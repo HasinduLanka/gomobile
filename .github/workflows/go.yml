@@ -17,6 +17,9 @@ jobs:
       uses: actions/setup-go@v2
       with:
         go-version: 1.17
+    
+    - name: Install mesa
+      run: sudo apt-get install libegl1-mesa-dev libgles2-mesa-dev libx11-dev
 
     - name: Build
       run: go build -v .
