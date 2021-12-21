@@ -20,14 +20,29 @@ jobs:
     
     - name: Install mesa
       run: sudo apt-get install libegl1-mesa-dev libgles2-mesa-dev libx11-dev
+      
+    - name: Build Dir
+      run: rm -rf mobilebuild ; mkdir mobilebuild
 
     - name: Build
-      run: go build -v .
+      run: go build -v -o mobilebuild/ .
+      
       
     - name: Gomobile build
-      run: go run golang.org/x/mobile/cmd/gomobile@latest build
+      run: go run golang.org/x/mobile/cmd/gomobile@latest build -v -o mobilebuild/
+      
+    - name: Gomobile bind
+      run: go run golang.org/x/mobile/cmd/gomobile@latest bind -v -o mobilebuild/
       
     - name: List files
-      run: ls -alhR
+      run: ls -alhR mobilebuild
       
-
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.3.1
+      with:
+        name: gomobile-build
+        path: mobilebuild
+        if-no-files-found: error
+        retention-days: 90
+        
+      
