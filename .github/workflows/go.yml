@@ -26,4 +26,8 @@ jobs:
       
     - name: Gomobile build
       run: go run golang.org/x/mobile/cmd/gomobile@latest build
+      
+    - name: List files
+      run: ls -alhR
+      
 
