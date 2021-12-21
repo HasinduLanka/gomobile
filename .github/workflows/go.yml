@@ -29,10 +29,10 @@ jobs:
       
       
     - name: Gomobile build
-      run: go run golang.org/x/mobile/cmd/gomobile@latest build -v -o mobilebuild/
+      run: go run golang.org/x/mobile/cmd/gomobile@latest build -v -o mobilebuild/gomobile.apk
       
     - name: Gomobile bind
-      run: go run golang.org/x/mobile/cmd/gomobile@latest bind -v -o mobilebuild/
+      run: go run golang.org/x/mobile/cmd/gomobile@latest bind -v -o mobilebuild/gomobile.aab
       
     - name: List files
       run: ls -alhR mobilebuild
